@@ -3,13 +3,17 @@ import React from 'react';
 // modules
 
 // components
+import { StatusBar } from 'react-native';
 
-import { Container, HeaderContainer } from './styles';
+import { Container } from './styles';
+
+import Header from '../../components/Header';
 
 function Login() {
   return (
     <Container>
-      <HeaderContainer></HeaderContainer>
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+      <Header type={'signin'} />
     </Container>
   );
 }
