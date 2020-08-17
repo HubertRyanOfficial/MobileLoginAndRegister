@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "31470807058",
+    "firebase_url": "https://gavemarketplace.firebaseio.com",
+    "project_id": "gavemarketplace",
+    "storage_bucket": "gavemarketplace.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31470807058:android:1ce79e933b3aedde4410cb",
+        "android_client_info": {
+          "package_name": "com.gavemarketplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31470807058-7kiv8c8ecc2ljd47br8a3uctedk4tq4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCw3jX1goiVrABGC1TzK5mkQiHczZIuU48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31470807058-7kiv8c8ecc2ljd47br8a3uctedk4tq4t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
