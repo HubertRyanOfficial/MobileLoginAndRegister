@@ -11,14 +11,14 @@ export const MiddleContainer = styled.ScrollView`
 `;
 
 export const MiddleTitle = styled.Text`
-  font-size: 25px;
+  font-size: 30px;
   letter-spacing: 2px;
   margin-top: 100px;
+  font-weight: bold;
 `;
 
 export const MiddleSubTitle = styled.Text`
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 14px;
   letter-spacing: 2px;
 `;
 
@@ -57,7 +57,7 @@ export const BottomContainer = styled.View`
 `;
 
 export const BottomButton = styled.View`
-  background-color: #84bcda;
+  background-color: #e18e90;
   width: 60px;
   height: 60px;
   border-radius: 10px;

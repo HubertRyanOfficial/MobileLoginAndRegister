@@ -35,32 +35,49 @@ import Header from '../../components/Header';
 
 import NextIcon from '../../../assets/i_next.png';
 
-function Login() {
+function SignUp() {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('hubertryanofficial@gmail.com');
   const [password, setPassword] = useState('123456');
+  const [passwordAgain, setPasswordAgain] = useState('123456');
   const [loading, setLoading] = useState(false);
 
   const getCredentials = useCallback(async () => {
     console.log('Opa');
     try {
-      if (email && email.includes('@') && email.includes('.') && password) {
+      if (
+        email &&
+        email.includes('@') &&
+        email.includes('.') &&
+        password &&
+        passwordAgain &&
+        password === passwordAgain
+      ) {
         if (!loading) {
           setLoading(true);
         }
-        await auth().signInWithEmailAndPassword(email, password);
+        await auth().createUserWithEmailAndPassword(email, password);
         navigation.navigate('Welcome');
+      } else if (password !== passwordAgain) {
+        throw 'different passwords';
       }
     } catch (error) {
-      console.log(error.code);
-      switch (error.code) {
-        case 'auth/user-not-found':
-          ToastAndroid.show('Ususário não encontrado!', ToastAndroid.SHORT);
-        case 'auth/wrong-password':
-          ToastAndroid.show('Senha incorreta!', ToastAndroid.SHORT);
-        default:
-          break;
+      if (error !== 'different passwords') {
+        console.log(error.code);
+        switch (error.code) {
+          case 'auth/weak-password':
+            ToastAndroid.show('Senha muito curta!', ToastAndroid.SHORT);
+          case 'auth/email-already-in-use':
+            ToastAndroid.show(
+              'Este e-mail já está em uso!',
+              ToastAndroid.SHORT,
+            );
+          default:
+            break;
+        }
+      } else {
+        ToastAndroid.show('As senhas não estão corretas!', ToastAndroid.SHORT);
       }
     } finally {
       setLoading(false);
@@ -70,10 +87,10 @@ function Login() {
   return (
     <Container>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-      <Header type={'signin'} />
+      <Header type={'signup'} />
       <MiddleContainer>
-        <MiddleTitle>Welcome back,</MiddleTitle>
-        <MiddleSubTitle>Gave</MiddleSubTitle>
+        <MiddleTitle>Hello,</MiddleTitle>
+        <MiddleSubTitle>Enter your informations bellow</MiddleSubTitle>
 
         <InputsContainer>
           <EmailInput
@@ -95,12 +112,18 @@ function Login() {
             placeholderTextColor="#ddd"
             editable={!loading}
           />
+          <PasswordInput
+            value={passwordAgain}
+            onChangeText={(text) => setPasswordAgain(text)}
+            autoCorrect={false}
+            autoCapitalize="none"
+            secureTextEntry
+            placeholder="Password again"
+            placeholderTextColor="#ddd"
+            editable={!loading}
+          />
         </InputsContainer>
       </MiddleContainer>
-
-      <ForgotPasswordContainer onPress={() => {}}>
-        <ForgotPasswordText>Forgot password?</ForgotPasswordText>
-      </ForgotPasswordContainer>
 
       <BottomContainer>
         <Button onPress={getCredentials} disabled={loading}>
@@ -117,5 +140,5 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;
 // Desenvolvido por Hubert Ryan

@@ -16,45 +16,19 @@ const Stack = createStackNavigator();
 
 // screens
 
+import VerifyUser from './routes/VerifyUser';
 import Login from './routes/Login';
+import SignUp from './routes/SignUp';
 import Welcome from './routes/Welcome';
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  async function getUser() {
-    try {
-      const currentUser = await auth().currentUser;
-
-      if (user) {
-        setUser(currentUser);
-      } else {
-        setUser(false);
-      }
-    } catch (error) {
-      console.log(error);
-      setUser(false);
-      ToastAndroid.show(
-        'Houve algum error, tente novamente!',
-        ToastAndroid.SHORT,
-      );
-    }
-  }
-
-  if (user === null) return null;
-
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={defaultNavigatorConfig}>
-        {!user ? (
-          <Stack.Screen name="Login" component={Login} />
-        ) : (
-          <Stack.Screen name="Welcome" component={Welcome} />
-        )}
+        <Stack.Screen name="VerifyUser" component={VerifyUser} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Welcome" component={Welcome} />
       </Stack.Navigator>
     </NavigationContainer>
   );
