@@ -36,6 +36,7 @@ function App() {
         setUser(false);
       }
     } catch (error) {
+      console.log(error);
       setUser(false);
       ToastAndroid.show(
         'Houve algum error, tente novamente!',

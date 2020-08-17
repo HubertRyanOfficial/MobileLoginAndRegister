@@ -4,10 +4,14 @@ import React from 'react';
 
 // components
 
-import { Container } from './styles';
+import { Container, HeaderContainer } from './styles';
 
 function Login() {
-  return <Container></Container>;
+  return (
+    <Container>
+      <HeaderContainer></HeaderContainer>
+    </Container>
+  );
 }
 
 export default Login;
