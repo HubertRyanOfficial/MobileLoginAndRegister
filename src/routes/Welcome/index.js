@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // modules
 
@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 
 // components
 
+import { StatusBar } from 'react-native';
 import { Container, Title, SubTitle, Button, ButtonText } from './styles';
 
 function Welcome() {
@@ -21,6 +22,7 @@ function Welcome() {
 
   return (
     <Container>
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <Title>Welcome</Title>
       <SubTitle>What's going on?</SubTitle>
       <Button onPress={goSignOut}>
