@@ -13,7 +13,7 @@ With react native, using redux to control the user's state along with the new cy
 
 ### Use
 
-In order to run the project, you need a GitHub clone and then a YARN INSTALL to install all the necessary dependencies that will be listed below, also you will need a free project to be able to replace the firebase android credentials, without these credentials the project will not work. They are located at android/app/google-services.json.
+In order to run the project, you need a GitHub clone and then a YARN INSTALL to install all the necessary dependencies that will be listed below, also you will need a free project to be able to replace the firebase android credentials, without these credentials the project will not work. They are located at ```android/app/google-services.json```. So, before that you start the project, don't forgot to enable Firebase Auth to email and password on configuration!
 
 Dependencies:
 
