@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // modules
 
+import store from '../../config/store';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 
@@ -14,6 +15,7 @@ function Welcome() {
 
   async function goSignOut() {
     await auth().signOut();
+    store.dispatch({ type: 'UPDATE_USER_STATE', playload: false });
     navigation.navigate('Login');
   }
 
@@ -22,7 +24,7 @@ function Welcome() {
       <Title>Welcome</Title>
       <SubTitle>What's going on?</SubTitle>
       <Button onPress={goSignOut}>
-        <ButtonText>Sair</ButtonText>
+        <ButtonText>Sign Out</ButtonText>
       </Button>
     </Container>
   );

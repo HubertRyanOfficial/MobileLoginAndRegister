@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 
 // modules
 
-import store from '../../config/store';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,9 +21,6 @@ import {
   MiddleSubTitle,
   InputsContainer,
   EmailInput,
-  PasswordInput,
-  ForgotPasswordContainer,
-  ForgotPasswordText,
   BottomContainer,
   BottomButton,
   Button,
@@ -36,24 +32,22 @@ import Header from '../../components/Header';
 
 import NextIcon from '../../../assets/i_next.png';
 
-function Login() {
+function Forgot() {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('hubertryanofficial@gmail.com');
-  const [password, setPassword] = useState('123456');
   const [loading, setLoading] = useState(false);
 
   async function getCredentials() {
     console.log('Opa');
     try {
-      if (email && email.includes('@') && email.includes('.') && password) {
+      if (email && email.includes('@') && email.includes('.')) {
         if (!loading) {
           setLoading(true);
         }
-        await auth().signInWithEmailAndPassword(email, password);
-
-        store.dispatch({ type: 'UPDATE_USER_STATE', playload: true });
-        navigation.navigate('Welcome');
+        await auth().sendPasswordResetEmail(email);
+        ToastAndroid.show('E-mail sent!', ToastAndroid.SHORT);
+        navigation.navigate('Login');
       }
     } catch (error) {
       console.log(error.code);
@@ -71,18 +65,13 @@ function Login() {
       setLoading(false);
     }
   }
-
-  const goForgot = useCallback(() => {
-    navigation.navigate('Forgot');
-  }, []);
-
   return (
     <Container>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <Header type={'signin'} />
       <MiddleContainer>
-        <MiddleTitle>Welcome back,</MiddleTitle>
-        <MiddleSubTitle>Gave</MiddleSubTitle>
+        <MiddleTitle>Forgot Password,</MiddleTitle>
+        <MiddleSubTitle>Tell me your e-mail</MiddleSubTitle>
 
         <InputsContainer>
           <EmailInput
@@ -94,22 +83,8 @@ function Login() {
             placeholderTextColor="#ddd"
             editable={!loading}
           />
-          <PasswordInput
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-            autoCorrect={false}
-            autoCapitalize="none"
-            secureTextEntry
-            placeholder="Password"
-            placeholderTextColor="#ddd"
-            editable={!loading}
-          />
         </InputsContainer>
       </MiddleContainer>
-
-      <ForgotPasswordContainer onPress={goForgot}>
-        <ForgotPasswordText>Forgot password?</ForgotPasswordText>
-      </ForgotPasswordContainer>
 
       <BottomContainer>
         <Button onPress={getCredentials} disabled={loading}>
@@ -126,5 +101,5 @@ function Login() {
   );
 }
 
-export default Login;
+export default Forgot;
 // Desenvolvido por Hubert Ryan

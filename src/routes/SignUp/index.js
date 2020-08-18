@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 
 // modules
 
+import store from '../../config/store';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,8 +23,6 @@ import {
   InputsContainer,
   EmailInput,
   PasswordInput,
-  ForgotPasswordContainer,
-  ForgotPasswordText,
   BottomContainer,
   BottomButton,
   Button,
@@ -58,6 +57,7 @@ function SignUp() {
           setLoading(true);
         }
         await auth().createUserWithEmailAndPassword(email, password);
+        store.dispatch({ type: 'UPDATE_USER_STATE', playload: true });
         navigation.navigate('Welcome');
       } else if (password !== passwordAgain) {
         throw 'different passwords';
@@ -68,11 +68,13 @@ function SignUp() {
         switch (error.code) {
           case 'auth/weak-password':
             ToastAndroid.show('Senha muito curta!', ToastAndroid.SHORT);
+            break;
           case 'auth/email-already-in-use':
             ToastAndroid.show(
               'Este e-mail já está em uso!',
               ToastAndroid.SHORT,
             );
+            break;
           default:
             break;
         }
