@@ -1,11 +1,8 @@
-# Gavemarketplace Test
+# Mobile Login And Register
 
 <p align="center">
   <img src="https://static.dribbble.com/users/1758524/screenshots/6493140/periodtracker_signup_2x.png" width="720" title="Login Screen">
 </p>
-
-In this test the technologies used were: Firebase, Redux, Styled Components and React Navigation v5.
-By Hubert Ryan to Gave!
 
 ### About
 
@@ -23,4 +20,4 @@ Dependencies:
 - [x] React Navigation
 - [x] Firebase
 
-Thank you so much for this opportunity to show my knowledge.
+By Hubert Ryan @2020
